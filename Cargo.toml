@@ -5,3 +5,7 @@ authors = ["Ian Burns <iwburns8@gmail.com>"]
 
 [dependencies]
 rand = "0.3.*"
+
+[[example]]
+name = "single_die"
+path = "examples/single_die.rs"
