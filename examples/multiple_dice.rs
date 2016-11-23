@@ -10,7 +10,7 @@ use rand::thread_rng;
 fn main() {
     let mut rng = thread_rng();
 
-    let mut die_set = DieSet::new_with_capacity(2);
+    let mut die_set = DieSet::new();
     die_set.add_dice(Die::new(6));
     die_set.add_dice(Die::new(6));
 

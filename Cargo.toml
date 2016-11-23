@@ -13,3 +13,7 @@ path = "examples/single_die.rs"
 [[example]]
 name = "multiple_dice"
 path = "examples/multiple_dice.rs"
+
+[[example]]
+name = "nested_sets"
+path = "examples/nested_sets.rs"
