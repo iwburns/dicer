@@ -9,3 +9,7 @@ rand = "0.3.*"
 [[example]]
 name = "single_die"
 path = "examples/single_die.rs"
+
+[[example]]
+name = "multiple_dice"
+path = "examples/multiple_dice.rs"
