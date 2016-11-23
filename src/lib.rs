@@ -32,16 +32,20 @@ pub struct DieSet<'a, R> {
 }
 
 impl<'a, R> DieSet<'a, R> {
-    pub fn new(num_dice: u32, faces_per_die: u32) -> DieSet<'a, R> where R: Rng {
-        let mut dice = Vec::new();
-
-        for _ in 0..num_dice {
-            dice.push(Box::new(Die::new(faces_per_die)) as Box<Dice<R>>);
-        }
-
+    pub fn new() -> DieSet<'a, R> where R: Rng {
         DieSet {
-            dice: dice
+            dice: Vec::new()
         }
+    }
+
+    pub fn new_with_capacity(capacity: usize) -> DieSet<'a, R> where R: Rng {
+        DieSet {
+            dice: Vec::with_capacity(capacity)
+        }
+    }
+
+    pub fn add_dice<D>(&mut self, dice: D) where D: Dice<R> + 'a, R: Rng {
+        self.dice.push(Box::new(dice) as Box<Dice<R>>);
     }
 }
 
