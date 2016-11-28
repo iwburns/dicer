@@ -3,7 +3,6 @@ extern crate rand;
 
 use dicer::Die;
 use dicer::DieSet;
-use dicer::Dice;
 
 use rand::thread_rng;
 

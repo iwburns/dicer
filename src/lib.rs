@@ -27,30 +27,28 @@ impl<R> Dice<R> for Die where R: Rng {
     }
 }
 
-pub struct DieSet<'a, R> {
+pub struct DieSet<'a, R: Rng> {
     dice: Vec<Box<Dice<R> + 'a>>
 }
 
-impl<'a, R> DieSet<'a, R> {
-    pub fn new() -> DieSet<'a, R> where R: Rng {
+impl<'a, R> DieSet<'a, R> where R: Rng {
+    pub fn new() -> DieSet<'a, R> {
         DieSet {
             dice: Vec::new()
         }
     }
 
-    pub fn new_with_capacity(capacity: usize) -> DieSet<'a, R> where R: Rng {
+    pub fn new_with_capacity(capacity: usize) -> DieSet<'a, R> {
         DieSet {
             dice: Vec::with_capacity(capacity)
         }
     }
 
-    pub fn add_dice<D>(&mut self, dice: D) where D: Dice<R> + 'a, R: Rng {
+    pub fn add_dice<D>(&mut self, dice: D) where D: Dice<R> + 'a {
         self.dice.push(Box::new(dice) as Box<Dice<R>>);
     }
-}
 
-impl<'a, R> Dice<R> for DieSet<'a, R> where R: Rng {
-    fn roll(&self, rng: &mut R) -> u32 {
+    pub fn roll(&self, rng: &mut R) -> u32 {
         self.dice.iter().fold(0, |acc, ref die| acc + die.roll(rng))
     }
 }
